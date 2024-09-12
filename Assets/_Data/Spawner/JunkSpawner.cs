@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JunkSpawner : MonoBehaviour
+public class JunkSpawner : Spawner
 {
-    // Start is called before the first frame update
-    void Start()
+    private static JunkSpawner instance;
+    public static JunkSpawner Instance { get => instance; }
+    public static string meteoriteOne = "Meteorite_1";
+    protected override void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Awake();
+        if (JunkSpawner.instance != null) Debug.LogError("only 1 junkspawner", gameObject.transform);
+        JunkSpawner.instance = this;
     }
 }
