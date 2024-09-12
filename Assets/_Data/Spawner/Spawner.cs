@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Spawner : AnMonoBehavior
+public abstract class Spawner : AnMonoBehaviour
 {
     [SerializeField] protected List<Transform> prefabs;
+    [SerializeField] protected Transform holder;
+    [SerializeField] protected List<Transform> poolObjs;
+
 
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadPrefabs();
+        this.LoadHolder();
+    }
+
+    protected virtual void LoadHolder()
+    {
+        if (this.holder != null) return;
+        this.holder = transform.Find("Holder");
+        Debug.Log(transform.name + " : LoadHolder", gameObject);
     }
     protected virtual void LoadPrefabs()
     {
@@ -40,7 +52,27 @@ public abstract class Spawner : AnMonoBehavior
             Debug.LogWarning("prefab not found :" + prefabName);
             return null;
         }
-        Transform newPrefab = Instantiate(prefab, spawnPos, rotation);
+        // Transform newPrefab = Instantiate(prefab, spawnPos, rotation);
+        Transform newPrefab = this.GetObjectFromPool(prefab);
+        newPrefab.SetPositionAndRotation(spawnPos, rotation);
+
+        newPrefab.parent = this.holder;
+        return newPrefab;
+    }
+
+    protected virtual Transform GetObjectFromPool(Transform prefab)
+    {
+        foreach (Transform poolObj in this.poolObjs)
+        {
+            if (poolObj.name == prefab.name)
+            {
+                this.poolObjs.Remove(poolObj);
+                return poolObj;
+            }
+        }
+
+        Transform newPrefab = Instantiate(prefab);
+        newPrefab.name = prefab.name;
         return newPrefab;
     }
     public virtual Transform GetPrefabByName(string name)
@@ -50,5 +82,11 @@ public abstract class Spawner : AnMonoBehavior
             if (prefab.name == name) return prefab;
         }
         return null;
+    }
+
+    public virtual void Despawn(Transform transform)
+    {
+        this.poolObjs.Add(transform);
+        transform.gameObject.SetActive(false);
     }
 }

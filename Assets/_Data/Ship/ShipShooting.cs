@@ -29,13 +29,13 @@ public class ShipShooting : MonoBehaviour
         Vector3 spawnPos = transform.position;
         Quaternion rotation = transform.parent.rotation;
         Transform newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.bulletOne, spawnPos, rotation);
-        Transform newBullet2 = BulletSpawner.Instance.Spawn(BulletSpawner.bulletTwo, spawnPos, rotation);
-        Transform newBullet3 = BulletSpawner.Instance.Spawn(BulletSpawner.bulletThree, spawnPos, rotation);
+        // Transform newBullet2 = BulletSpawner.Instance.Spawn(BulletSpawner.bulletTwo, spawnPos, rotation);
+        // Transform newBullet3 = BulletSpawner.Instance.Spawn(BulletSpawner.bulletThree, spawnPos, rotation);
         if (newBullet == null) return;
 
         newBullet.gameObject.SetActive(true);
-        newBullet2.gameObject.SetActive(true);
-        newBullet3.gameObject.SetActive(true);
+        // newBullet2.gameObject.SetActive(true);
+        // newBullet3.gameObject.SetActive(true);
 
     }
 

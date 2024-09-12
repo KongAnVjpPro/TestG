@@ -17,4 +17,9 @@ public class BulletSpawner : Spawner
         if (BulletSpawner.instance != null) Debug.LogError("Only 1");
         BulletSpawner.instance = this;
     }
+
+    // public virtual void Despawn(Transform transform)
+    // {
+
+    // }
 }
