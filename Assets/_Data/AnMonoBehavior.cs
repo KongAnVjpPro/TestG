@@ -25,4 +25,8 @@ public class AnMonoBehaviour : MonoBehaviour
     {
 
     }
+    protected virtual void OnEnable()
+    {
+
+    }
 }
