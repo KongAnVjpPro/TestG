@@ -6,7 +6,7 @@ using UnityEngine;
 public class JunkRandom : AnMonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] protected JunkCtrl junkCtrl;
+    [SerializeField] protected JunkSpawnerCtrl junkSpawnerCtrl;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -14,8 +14,8 @@ public class JunkRandom : AnMonoBehaviour
     }
     protected virtual void LoadJunkSpawner()
     {
-        if (this.junkCtrl != null) return;
-        this.junkCtrl = GetComponent<JunkCtrl>();
+        if (this.junkSpawnerCtrl != null) return;
+        this.junkSpawnerCtrl = GetComponent<JunkSpawnerCtrl>();
         Debug.Log(transform.name + " : Load JunkSpawner", gameObject);
     }
 
@@ -25,11 +25,11 @@ public class JunkRandom : AnMonoBehaviour
     }
     protected virtual void JunkSpawning()
     {
-        Transform randomPoint = this.junkCtrl.junkSpawnPoints.GetRandom();
+        Transform randomPoint = this.junkSpawnerCtrl.junkSpawnPoints.GetRandom();
 
         Vector3 pos = randomPoint.position;
         Quaternion rot = transform.rotation;
-        Transform obj = this.junkCtrl.junkSpawner.Spawn(JunkSpawner.meteoriteOne, pos, rot);
+        Transform obj = this.junkSpawnerCtrl.junkSpawner.Spawn(JunkSpawner.meteoriteOne, pos, rot);
         obj.gameObject.SetActive(true);
 
 
