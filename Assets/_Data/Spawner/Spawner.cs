@@ -6,9 +6,12 @@ using UnityEngine;
 
 public abstract class Spawner : AnMonoBehaviour
 {
+    [Header("Spawner")]
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected Transform holder;
     [SerializeField] protected List<Transform> poolObjs;
+    [SerializeField] protected int spawnedCount = 0;
+    public int SpawnedCount => spawnedCount;
 
 
 
@@ -57,6 +60,7 @@ public abstract class Spawner : AnMonoBehaviour
         newPrefab.SetPositionAndRotation(spawnPos, rotation);
 
         newPrefab.parent = this.holder;
+        this.spawnedCount++;
         return newPrefab;
     }
 
@@ -88,5 +92,6 @@ public abstract class Spawner : AnMonoBehaviour
     {
         this.poolObjs.Add(transform);
         transform.gameObject.SetActive(false);
+        this.spawnedCount--;
     }
 }

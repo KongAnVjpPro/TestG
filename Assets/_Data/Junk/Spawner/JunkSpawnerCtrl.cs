@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class JunkSpawnerCtrl : AnMonoBehaviour
 {
-    public JunkSpawner junkSpawner;
-    public JunkSpawnPoints junkSpawnPoints;
+    [SerializeField] protected JunkSpawner junkSpawner;
+    public JunkSpawner JunkSpawner => junkSpawner;
+    [SerializeField] protected JunkSpawnPoints junkSpawnPoints;
+    public JunkSpawnPoints JunkSpawnPoints => junkSpawnPoints;
 
     protected override void LoadComponents()
     {

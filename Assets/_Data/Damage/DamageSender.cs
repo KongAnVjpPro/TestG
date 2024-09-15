@@ -14,10 +14,6 @@ public class DamageSender : AnMonoBehaviour
     public virtual void Send(DamageReceiver damageReceiver)
     {
         damageReceiver.Deduct(this.damage);
-        this.DestroyObject();
     }
-    protected virtual void DestroyObject()
-    {
-        Destroy(transform.parent.gameObject);
-    }
+
 }

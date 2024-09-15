@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JunkSpawner : Spawner
 {
+    [Header("Junk")]
     private static JunkSpawner instance;
     public static JunkSpawner Instance { get => instance; }
     public static string meteoriteOne = "Meteorite_1";
