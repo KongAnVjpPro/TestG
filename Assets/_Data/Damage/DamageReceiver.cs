@@ -7,12 +7,17 @@ using UnityEngine;
 public class DamageReceiver : AnMonoBehaviour
 {
     [SerializeField] protected SphereCollider sphereCollider;
-    [SerializeField] protected float hp = 1f;
-    [SerializeField] protected float hpMax = 2f;
+    [SerializeField] protected int hp = 1;
+    [SerializeField] protected int hpMax = 2;
     [SerializeField] protected bool isDead = false;
     protected override void OnEnable()
     {
         base.OnEnable();
+        this.Reborn();
+    }
+    protected override void ResetValue()
+    {
+        base.ResetValue();
         this.Reborn();
     }
     protected override void LoadComponents()
@@ -38,7 +43,7 @@ public class DamageReceiver : AnMonoBehaviour
         this.hp = this.hpMax;
         this.isDead = false;
     }
-    public virtual void Add(float add)
+    public virtual void Add(int add)
     {
         if (this.isDead) return;
 
@@ -46,7 +51,7 @@ public class DamageReceiver : AnMonoBehaviour
         if (this.hp > this.hpMax) this.hp = this.hpMax;
     }
 
-    public virtual void Deduct(float deduct)
+    public virtual void Deduct(int deduct)
     {
         //if (this.isDead) return;
 

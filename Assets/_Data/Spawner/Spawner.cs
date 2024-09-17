@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Spawner : AnMonoBehaviour
@@ -55,7 +52,17 @@ public abstract class Spawner : AnMonoBehaviour
             Debug.LogWarning("prefab not found :" + prefabName);
             return null;
         }
-        // Transform newPrefab = Instantiate(prefab, spawnPos, rotation);
+        // Transform newPrefab = this.GetObjectFromPool(prefab);
+        // newPrefab.SetPositionAndRotation(spawnPos, rotation);
+
+        // newPrefab.parent = this.holder;
+        // this.spawnedCount++;
+        return this.Spawn(prefab, spawnPos, rotation);
+    }
+
+    public virtual Transform Spawn(Transform prefab, Vector3 spawnPos, Quaternion rotation)
+    {
+
         Transform newPrefab = this.GetObjectFromPool(prefab);
         newPrefab.SetPositionAndRotation(spawnPos, rotation);
 
@@ -93,5 +100,10 @@ public abstract class Spawner : AnMonoBehaviour
         this.poolObjs.Add(transform);
         transform.gameObject.SetActive(false);
         this.spawnedCount--;
+    }
+    public virtual Transform RandomPrefab()
+    {
+        int rand = Random.Range(0, this.prefabs.Count);
+        return this.prefabs[rand];
     }
 }

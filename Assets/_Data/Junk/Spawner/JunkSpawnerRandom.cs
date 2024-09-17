@@ -38,10 +38,12 @@ public class JunkSpawnerRandom : AnMonoBehaviour
         this.timer = 0f;
 
         Transform randomPoint = this.junkSpawnerCtrl.JunkSpawnPoints.GetRandom();
-
         Vector3 pos = randomPoint.position;
         Quaternion rot = transform.rotation;
-        Transform obj = this.junkSpawnerCtrl.JunkSpawner.Spawn(JunkSpawner.meteoriteOne, pos, rot);
+
+        Transform prefab = this.junkSpawnerCtrl.JunkSpawner.RandomPrefab();
+
+        Transform obj = this.junkSpawnerCtrl.JunkSpawner.Spawn(prefab, pos, rot);
         obj.gameObject.SetActive(true);
 
 
