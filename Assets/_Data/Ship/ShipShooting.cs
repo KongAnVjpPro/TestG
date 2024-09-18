@@ -34,6 +34,8 @@ public class ShipShooting : MonoBehaviour
         if (newBullet == null) return;
 
         newBullet.gameObject.SetActive(true);
+        BulletCtrl bulletCtrl = newBullet.GetComponent<BulletCtrl>();
+        bulletCtrl.SetShooter(transform.parent);
         // newBullet2.gameObject.SetActive(true);
         // newBullet3.gameObject.SetActive(true);
 
