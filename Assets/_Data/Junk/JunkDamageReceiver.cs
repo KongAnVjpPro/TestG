@@ -22,9 +22,15 @@ public class JunkDamageReceiver : DamageReceiver
     {
         this.OnDeadFX();
         this.junkCtrl.JunkDespawn.DespawnObject();
+        this.OnDeadDrop();
 
-        //drop item
-        DropManager.Instance.Drop(this.junkCtrl.JunkSO.dropList);
+
+    }
+    protected virtual void OnDeadDrop()
+    {
+        Vector3 dropPos = transform.position;
+        Quaternion dropRot = transform.rotation;
+        ItemDropSpawner.Instance.Drop(this.junkCtrl.JunkSO.dropList, dropPos, dropRot);
     }
     protected virtual void OnDeadFX()
     {
