@@ -1,0 +1,2 @@
+- item despawn vào pool objs của junk
+- Chưa có rate rớt đồ
