@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 [CreateAssetMenu(fileName = "ItemProfileSO", menuName = "SO/ItemProfile")]
 public class ItemProfileSO : ScriptableObject
 {
@@ -6,4 +9,5 @@ public class ItemProfileSO : ScriptableObject
     public ItemType itemType = ItemType.NoType;
     public string itemName = "No-name";
     public int defaultMaxStack = 7;
+    public List<ItemRecipe> upgradeLevels;
 }

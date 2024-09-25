@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 061254987c4630d4082f2b17e0ac680b, type: 3}
-  m_Name: GoldOre
+  m_Name: BronzeSword
   m_EditorClassIdentifier: 
-  itemCode: 2
-  itemType: 1
-  itemName: GoldOre
-  defaultMaxStack: 7
+  itemCode: 3
+  itemType: 2
+  itemName: BronzeSword
+  defaultMaxStack: 1
+  upgradeLevels:
+  - ingredients:
+    - itemProfile: {fileID: 11400000, guid: 4d923207c53c6aa4cbf3a07e526a8091, type: 2}
+      itemCount: 2
+    - itemProfile: {fileID: 11400000, guid: 3382108e589f90a4bb90eade1a865bba, type: 2}
+      itemCount: 2

@@ -5,24 +5,24 @@ using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class ItemLooter : AnMonoBehaviour
+public class ItemLooter : InventoryAbstract
 {
-    [SerializeField] protected Inventory inventory;
+    //[SerializeField] protected Inventory inventory;
     [SerializeField] protected SphereCollider _collider;
     [SerializeField] protected Rigidbody _rigibody;
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadInventory();
+        //this.LoadInventory();
         this.LoadCollider();
         this.LoadRigibody();
     }
-    protected virtual void LoadInventory()
-    {
-        if (this.inventory != null) return;
-        this.inventory = transform.parent.GetComponent<Inventory>();
-        Debug.LogWarning(transform.name + " : LoadInventory", gameObject);
-    }
+    // protected virtual void LoadInventory()
+    // {
+    //     if (this.inventory != null) return;
+    //     this.inventory = transform.parent.GetComponent<Inventory>();
+    //     Debug.LogWarning(transform.name + " : LoadInventory", gameObject);
+    // }
     protected virtual void LoadCollider()
     {
         if (this._collider != null) return;
